@@ -1,21 +1,6 @@
-import java.util.LinkedList;
-
 public class PalindromecheckerApp {
     public static void main(String[] args) {
         String word = "madam";
-        LinkedList<Character> list = new LinkedList<>();
-
-        for (char c : word.toCharArray()) {
-            list.add(c);
-        }
-
-        boolean isPalindrome = true;
-        while (list.size() > 1) {
-            if (!list.removeFirst().equals(list.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
-        }
 
         System.out.println("=======================================");
         System.out.println("   Welcome to PalindromeChecker App");
@@ -23,7 +8,7 @@ public class PalindromecheckerApp {
         System.out.println("=======================================");
         System.out.println("Checking word: " + word);
 
-        if (isPalindrome) {
+        if (isPalindrome(word, 0, word.length() - 1)) {
             System.out.println("Result: \"" + word + "\" is a palindrome.");
         } else {
             System.out.println("Result: \"" + word + "\" is not a palindrome.");
@@ -32,4 +17,15 @@ public class PalindromecheckerApp {
         System.out.println("=======================================");
         System.out.println("Program finished.");
     }
+
+    public static boolean isPalindrome(String word, int start, int end) {
+        if (start >= end) {
+            return true;
+        }
+        if (word.charAt(start) != word.charAt(end)) {
+            return false;
+        }
+        return isPalindrome(word, start + 1, end - 1);
+    }
 }
+
